@@ -1,0 +1,13 @@
+help("read.csv")
+setwd("C:/Users/nilan/OneDrive - Rensselaer Polytechnic Institute/RPI/My Acadamic/Data Analaytics/DataAnalytics2023_Neelanga_Thelasingha/lab0/EPI/EPI/")
+data1<-read.csv("2010EPI_data.csv",header=T,skip = 1)
+data1
+head(data1)
+names(data1)
+summary(data1)
+summary(data1$EPI)
+boxplot(data1$EPI)
+hist(data1$EPI)
+fivenum(data1$EPI,na.rm=TRUE)
+mean(data1$EPI,na.rm=TRUE)
+median((data1$EPI),na.rm=TRUE)
