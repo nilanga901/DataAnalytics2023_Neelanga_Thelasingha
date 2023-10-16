@@ -37,5 +37,38 @@ image(t(data_Matrix_Ordered)[,nrow(data_Matrix_Ordered):1])
 plot(rowMeans(data_Matrix_Ordered),40:1,,xlab="The ROw Mean",ylab="Row",pch=19)
 plot(colMeans(data_Matrix_Ordered),xlab="Column",ylab="Column Mean",pch=19)
 
+data("Titanic")
 
 
+# Load the required library
+library(rpart)
+
+# Fit a decision tree model
+titanic_tree <- rpart(Survived ~ ., data = Titanic)
+
+# View the decision tree
+print(titanic_tree)
+
+
+# Load the required library
+library(party)
+
+# Fit a conditional inference tree model
+titanic_ctree <- ctree(Survived ~ ., data = Titanic)
+
+# View the conditional inference tree
+plot(titanic_ctree)
+
+# Load the required library for one-hot encoding
+library(caret)
+
+# Create dummy variables for categorical columns
+dummies <- dummyVars(" ~ .", data = Titanic, fullRank = TRUE)
+titanic_encoded <- predict(dummies, newdata = Titanic)
+
+# Subset the data for clustering (excluding the "Survived" column)
+titanic_clustering_data <- titanic_encoded[, -1]
+
+# Perform hierarchical clustering
+titanic_hclust <- hclust(dist(titanic_clustering_data))
+plot(titanic_hclust)

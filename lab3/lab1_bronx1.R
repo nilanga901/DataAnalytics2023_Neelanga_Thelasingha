@@ -1,13 +1,17 @@
 library(gdata) 
 library(readxl)
-#faster xls reader but requires perl!
-bronx1 <- read_excel(, sheet = 1)
-bronx1<-bronx1[which(bronx1$GROSS.SQUARE.FEET!="0" & bronx1$LAND.SQUARE.FEET!="0" & bronx1$SALE.PRICE!="$0"),]
+# Set the working directory
+setwd("C:/Users/nilan/OneDrive - Rensselaer Polytechnic Institute/RPI/My Acadamic/Data Analaytics/DataAnalytics2023_Neelanga_Thelasingha/lab3/")
 
+# Read the Excel file
+bronx1 <- read_excel("rollingsales_bronx.xls", sheet = 1, range = "A5:U5273", col_names = TRUE)
+
+# Replace spaces, line breaks, and special characters with periods in column names
+colnames(bronx1) <- gsub("[[:space:]|[:punct:]]", ".", colnames(bronx1))
 
 #alternate
 #library("xlsx", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
-#bronx1<-read.xlsx("<SOMEWHERE>/rollingsales_bronx.xls",pattern="BOROUGH",stringsAsFactors=FALSE,sheetIndex=1,startRow=5,header=TRUE)
+#bronx1<-read.xlsx("rollingsales_bronx.xls",pattern="BOROUGH",stringsAsFactors=FALSE,sheetIndex=1,startRow=5,header=TRUE)
 View(bronx1)
 #
 attach(bronx1) # If you choose to attach, leave out the "data=." in lm regression
