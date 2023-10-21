@@ -39,3 +39,4 @@ m4<-lm(log(bronx1$SALE.PRICE)~0+log(bronx1$GROSS.SQUARE.FEET)+log(bronx1$LAND.SQ
 summary(m4)
 plot(resid(m4))
 #
+
